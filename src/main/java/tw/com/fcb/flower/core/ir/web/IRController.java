@@ -1,6 +1,7 @@
 package tw.com.fcb.flower.core.ir.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.extern.slf4j.Slf4j;
 import tw.com.fcb.flower.core.commons.enums.ResponseStatus;
 import tw.com.fcb.flower.core.commons.http.Response;
 import tw.com.fcb.flower.core.ir.service.IRService;
@@ -16,6 +18,7 @@ import tw.com.fcb.flower.core.ir.web.cmd.IRSaveCmd;
 import tw.com.fcb.flower.core.ir.web.cmd.SwiftMessageSaveCmd;
 import tw.com.fcb.flower.core.ir.web.dto.IR;
 
+@Slf4j
 @RestController
 @RequestMapping("/ir")
 public class IRController {
@@ -35,7 +38,11 @@ public class IRController {
 	}
 	
 	@PostMapping
-	public void insert(IRSaveCmd ir) {
+	public void insert(IRSaveCmd ir, BindingResult rs) {
+		
+		log.info("{}", rs.getAllErrors());
+		
+		log.info("{}", ir);
 		
 	}
 	
