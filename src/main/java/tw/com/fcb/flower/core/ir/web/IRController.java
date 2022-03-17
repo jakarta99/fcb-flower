@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
+import tw.com.fcb.flower.core.commons.enums.ResponseStatus;
+import tw.com.fcb.flower.core.commons.http.Response;
 import tw.com.fcb.flower.core.ir.service.IRService;
 import tw.com.fcb.flower.core.ir.web.cmd.IRCriteriaCmd;
 import tw.com.fcb.flower.core.ir.web.cmd.IRSaveCmd;
@@ -43,8 +45,28 @@ public class IRController {
 	}
 	
 	@GetMapping("/{id}")
-	public IR getById(Long id) {
-		return new IR();
+	public Response<IR> getById(Long id) {
+		
+		Response<IR> response = new Response<IR>();
+		
+		try {
+			IR ir = service.getById(id);
+			
+			response = new Response<IR>();
+			response.setStatus(ResponseStatus.SUCCESS);
+			response.setCode("0000");
+			response.setMessage(null);
+			
+			response.setData(ir);
+		} catch (Exception ex) {
+			// 不明錯誤 : 9999
+			response.setStatus(ResponseStatus.ERROR);
+			response.setCode("9999");
+			response.setMessage("系統異常");
+		}
+		
+		
+		return response;
 	}
 	
 	@PutMapping("/print")

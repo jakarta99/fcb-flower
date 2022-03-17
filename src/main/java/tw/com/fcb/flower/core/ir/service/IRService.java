@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tw.com.fcb.flower.core.ir.repository.IRSwiftMessageRepository;
 import tw.com.fcb.flower.core.ir.repository.entity.IRSwiftMessage;
 import tw.com.fcb.flower.core.ir.web.cmd.SwiftMessageSaveCmd;
+import tw.com.fcb.flower.core.ir.web.dto.IR;
 
 @Transactional
 @Service
@@ -32,6 +33,10 @@ public class IRService {
 		
 		
 		// commitTx
+	}
+	
+	public IR getById(Long id) {
+		return new IR();
 	}
 
 }
