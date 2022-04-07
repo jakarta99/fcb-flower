@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import tw.com.fcb.flower.core.commons.enums.ResponseStatus;
 import tw.com.fcb.flower.core.commons.http.Response;
+import tw.com.fcb.flower.core.ir.config.IRConfig;
 import tw.com.fcb.flower.core.ir.service.IRService;
 import tw.com.fcb.flower.core.ir.web.cmd.IRCriteriaCmd;
 import tw.com.fcb.flower.core.ir.web.cmd.IRSaveCmd;
@@ -24,7 +25,11 @@ import tw.com.fcb.flower.core.ir.web.dto.IR;
 public class IRController {
 	
 	@Autowired
+	IRConfig irConfig;
+	
+	@Autowired
 	IRService service;
+	
 
 	@PostMapping("/swift")
 	@Operation(description = "接收 swift 電文並存到 SwiftMessage", summary="儲存 swift")
@@ -48,6 +53,10 @@ public class IRController {
 	
 	@GetMapping("/count")
 	public Integer getCount(IRCriteriaCmd criteria) {
+		
+		log.debug("envConfig = '{}'", irConfig.getEnvType());
+		
+		
 		return 0;
 	}
 	
