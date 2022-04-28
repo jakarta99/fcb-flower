@@ -10,7 +10,6 @@ import lombok.Setter;
 @Configuration
 @Getter
 @Setter
-@PropertySource("classpath:application.properties")
 public class IRConfig {
 
 	
