@@ -12,12 +12,13 @@ import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import tw.com.fcb.flower.core.mq.Receiver;
 
-
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableAsync
 @SpringBootApplication
 public class FcbCoreApplication {
@@ -60,8 +61,7 @@ public class FcbCoreApplication {
 	MessageListenerAdapter listenerAdapter(Receiver receiver) {
 		return new MessageListenerAdapter(receiver, "receiveMessage");
 	}
-	
-	
+
 	@Bean("myExecutor")
 	public Executor myExecutor() {
 		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
@@ -72,7 +72,7 @@ public class FcbCoreApplication {
 		executor.initialize();
 		return executor;
 	}
-	
+
 	@Bean("myExecutor2")
 	public Executor myExecutor2() {
 		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();

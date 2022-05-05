@@ -23,5 +23,9 @@ public class FileService {
 		
 		// FileUtils.save(file, filePath);
 	}
+	
+	public void getSwiftByCode(String code) {
+		// FileUtils.save(file, filePath);
+	}
 
 }

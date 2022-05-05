@@ -19,8 +19,6 @@ public class IRService {
 	
 	public void insert(SwiftMessageSaveCmd saveCmd) {
 		// beginTx
-		
-		
 		IRSwiftMessage entity = new IRSwiftMessage();
 		
 //		entity.setSeqNo(saveCmd.getSeqNo());
@@ -29,8 +27,6 @@ public class IRService {
 		BeanUtils.copyProperties(saveCmd, entity);
 		
 		repository.save(entity);
-		
-		
 		
 		// commitTx
 	}

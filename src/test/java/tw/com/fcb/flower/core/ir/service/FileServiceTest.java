@@ -15,6 +15,8 @@ class FileServiceTest {
 	@Test
 	void testSaveSwift() {
 		fileService.saveSwift("xxxx");
+		
+		fileService.getSwiftByCode("A001");;
 	}
 
 }
